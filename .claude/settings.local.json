@@ -1,0 +1,42 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install *)",
+      "Bash(cd \"/c/Users/ERSAN/Desktop/HarryPotterAnniversary\" && cat \"/c/Users/ERSAN/AppData/Local/Temp/claude/C--Users-ERSAN-Desktop-HarryPotterAnniversary/d584ffb0-ac43-42f1-9667-b3364ba24066/tasks/b2y0zs420.output\" | tail -8)",
+      "Bash(npm view *)",
+      "Bash(npm run *)",
+      "Bash(PORT=3457 npm run dev)",
+      "Bash(echo \"PID=$!\")",
+      "Bash(curl -s -o /dev/null -w \"HOME:%{http_code}\\\\n\" http://localhost:3457)",
+      "Bash(curl -s -X POST http://localhost:3457/api/verify -H \"Content-Type: application/json\" -d '{\"password\":\"21062025\"}' -w \"  [%{http_code}]\\\\n\")",
+      "Bash(curl -s -X POST http://localhost:3457/api/verify -H \"Content-Type: application/json\" -d '{\"password\":\"nope\"}' -w \"  [%{http_code}]\\\\n\")",
+      "Bash(kill 1247)",
+      "Bash(mkdir -p public/audio)",
+      "Bash(cp \"/c/Users/ERSAN/Desktop/asd.MP3\" public/audio/background.mp3)",
+      "Read(//c/c/Users/ERSAN/Desktop/HarryPotterAnniversary/public/**)",
+      "Bash(grep -iE \"\\\\.\\(jpg|jpeg|png|webp\\)$\")",
+      "Bash(mkdir -p public/photos)",
+      "Bash(cp \"/c/Users/ERSAN/Desktop/hogwarts-castle-exterior-fact-file-image.jpg\" public/photos/hogwarts-night.jpg)",
+      "Bash(rm -f data/timeline.ts data/memories.ts data/horcruxes.ts data/room.ts components/sections/SectionRoom.tsx components/sections/SectionTimeTurner.tsx)",
+      "Read(//c/c/Users/ERSAN/Desktop/HarryPotterAnniversary/**)",
+      "Bash(cd \"/c/Users/ERSAN/Desktop/HarryPotterAnniversary\" && rm -f components/sections/SectionHorcrux.tsx && echo removed)",
+      "Bash(grep -rl \"HogwartsCastle\" components app)",
+      "Bash(grep -rl \"config.sections\" components app lib)",
+      "Bash(grep -rln \"SectionRoom\\\\|SectionTimeTurner\\\\|SectionHorcrux\\\\|data/timeline\\\\|data/memories\\\\|data/horcruxes\\\\|data/room\" components app)",
+      "Bash(grep -rln \"Candles\" components)",
+      "Bash(grep -rln \"FlyingOwls\" components app)",
+      "Bash(grep -rln \"HogwartsSilhouette\" components)",
+      "Bash(rm -f components/HogwartsCastle.tsx components/effects/Candles.tsx components/effects/FlyingOwls.tsx)",
+      "Bash(cp public/images/timeline/first-meet.jpg public/photos/first-meet.jpg)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(cd \"/c/Users/ERSAN/Desktop/HarryPotterAnniversary\" && rm -rf .next && echo \"cleared .next\")",
+      "Bash(grep -iE \"\\\\.\\(jpg|jpeg|png|webp|svg|gif\\)$\")",
+      "Bash(cd \"/c/Users/ERSAN/Desktop/HarryPotterAnniversary\" && cp \"/c/Users/ERSAN/Desktop/Hogwarts-Logo-500x281.png\" public/photos/hogwarts-logo.png && ls -la public/photos/hogwarts-logo.png)",
+      "Bash(perl -0pi -e 's/\\(photo: \"\\\\/photos[^\"]*\",\\)/$1 video: \"\",/g' site.config.ts)",
+      "Bash(perl -0pi -e 's/\\(src: \"\\\\/photos[^\"]*\",\\)/$1 video: \"\",/g' site.config.ts)",
+      "Bash(perl -0pi -e 's/\\(photo: \"\\\\/photos[^\"]*\"\\) \\\\}/$1, video: \"\" }/g' site.config.ts)",
+      "Bash(rm -f components/effects/ScrollProgress.tsx)",
+      "Bash(rm -rf .next)"
+    ]
+  }
+}
