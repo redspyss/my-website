@@ -1,9 +1,20 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Sayfa açılır açılmaz videoyu oynatmayı garanti et.
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = true;
+    const tryPlay = () => v.play().catch(() => {});
+    tryPlay();
+    v.addEventListener("canplay", tryPlay, { once: true });
+    return () => v.removeEventListener("canplay", tryPlay);
+  }, []);
 
   // Tarayıcılar sesli otomatik oynatmayı engeller; ekrana dokununca sesi aç.
   const unmute = () => {
