@@ -30,66 +30,24 @@ export default function Home() {
   };
 
   return (
-    <main
-      onClick={needsTap ? enableSound : undefined}
-      style={{
-        position: "fixed",
-        inset: 0,
-        background: "#ffffff",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 9999,
-        cursor: needsTap ? "pointer" : "default",
-      }}
-    >
+    <main onClick={needsTap ? enableSound : undefined} className="stage">
       <video
         ref={videoRef}
+        className="bgvideo"
         src="/video"
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "contain",
-          background: "#ffffff",
-        }}
       />
 
+      {/* Dikey telefon ipucu (kısa süre görünür) */}
+      <div className="rotateHint">↻ Daha büyük görüntü için telefonu yan çevir</div>
+
       {needsTap && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            background: "rgba(0,0,0,0.82)",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: 22,
-            color: "#fff",
-            textAlign: "center",
-            padding: 24,
-            zIndex: 10000,
-            backdropFilter: "blur(2px)",
-            WebkitBackdropFilter: "blur(2px)",
-          }}
-        >
-          <div
-            style={{
-              width: 88,
-              height: 88,
-              borderRadius: "50%",
-              border: "2px solid rgba(255,255,255,0.85)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              animation: "pulse 1.8s ease-in-out infinite",
-            }}
-          >
+        <div className="gate">
+          <div className="gateIcon">
             <svg
               width="40"
               height="40"
@@ -105,17 +63,116 @@ export default function Home() {
               <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
             </svg>
           </div>
-          <div style={{ fontSize: 22, fontWeight: 600, letterSpacing: 0.5 }}>
-            Ses için dokun
-          </div>
-          <style>{`
-            @keyframes pulse {
-              0%, 100% { transform: scale(1); opacity: 1; }
-              50% { transform: scale(1.12); opacity: 0.7; }
-            }
-          `}</style>
+          <div className="gateTitle">Ses için dokun</div>
         </div>
       )}
+
+      <style>{`
+        html,
+        body {
+          margin: 0;
+          padding: 0;
+          height: 100%;
+          background: #ffffff;
+          overflow: hidden;
+        }
+        .stage {
+          position: fixed;
+          inset: 0;
+          background: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 9999;
+          overflow: hidden;
+        }
+        .bgvideo {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          background: #ffffff;
+        }
+        .gate {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.82);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 22px;
+          color: #fff;
+          text-align: center;
+          padding: 24px;
+          z-index: 10000;
+          backdrop-filter: blur(2px);
+          -webkit-backdrop-filter: blur(2px);
+        }
+        .gateIcon {
+          width: 88px;
+          height: 88px;
+          border-radius: 50%;
+          border: 2px solid rgba(255, 255, 255, 0.85);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          animation: pulse 1.8s ease-in-out infinite;
+        }
+        .gateTitle {
+          font-size: 22px;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+        }
+        .rotateHint {
+          display: none;
+        }
+        @keyframes pulse {
+          0%,
+          100% {
+            transform: scale(1);
+            opacity: 1;
+          }
+          50% {
+            transform: scale(1.12);
+            opacity: 0.7;
+          }
+        }
+
+        /* Dikey telefon: videoyu 90° döndürüp ekranı doldur */
+        @media (orientation: portrait) and (max-width: 900px) {
+          .bgvideo {
+            width: 100vh;
+            height: 100vw;
+            max-width: none;
+            transform: rotate(90deg);
+          }
+          .rotateHint {
+            display: block;
+            position: fixed;
+            bottom: 14px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10001;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-size: 12px;
+            padding: 7px 14px;
+            border-radius: 999px;
+            white-space: nowrap;
+            animation: hintfade 6s ease forwards;
+          }
+        }
+        @keyframes hintfade {
+          0%,
+          65% {
+            opacity: 0.85;
+          }
+          100% {
+            opacity: 0;
+            visibility: hidden;
+          }
+        }
+      `}</style>
     </main>
   );
 }
