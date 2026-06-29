@@ -40,7 +40,7 @@ export default function Home() {
     >
       <video
         ref={videoRef}
-        src="https://github.com/redspyss/my-website/releases/download/media-v1/wegh-tuzak.mp4"
+        src="/video"
         autoPlay
         loop
         muted
