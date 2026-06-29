@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <main
-      onClick={enableSound}
+      onClick={needsTap ? enableSound : undefined}
       style={{
         position: "fixed",
         inset: 0,
@@ -107,9 +107,6 @@ export default function Home() {
           </div>
           <div style={{ fontSize: 22, fontWeight: 600, letterSpacing: 0.5 }}>
             Ses için dokun
-          </div>
-          <div style={{ fontSize: 14, opacity: 0.7 }}>
-            Dokunduğunda şarkı çalmaya başlar
           </div>
           <style>{`
             @keyframes pulse {
