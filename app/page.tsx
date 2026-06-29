@@ -1,45 +1,47 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
-import Loader from "@/components/Loader";
-import Gate from "@/components/Gate";
-import OwlDelivery from "@/components/OwlDelivery";
-import Experience from "@/components/Experience";
-import WandCursor from "@/components/effects/WandCursor";
-import { useExperience } from "@/lib/ExperienceProvider";
-
-type Phase = "loading" | "gate" | "owl" | "experience";
+import { useRef } from "react";
 
 export default function Home() {
-  const [phase, setPhase] = useState<Phase>("loading");
-  const { unlock } = useExperience();
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Tarayıcılar sesli otomatik oynatmayı engeller; ekrana dokununca sesi aç.
+  const unmute = () => {
+    const v = videoRef.current;
+    if (!v) return;
+    v.muted = false;
+    v.volume = 1;
+    v.play().catch(() => {});
+  };
 
   return (
-    <>
-      <WandCursor />
-
-      <AnimatePresence mode="wait">
-        {phase === "loading" && (
-          <Loader key="loader" onDone={() => setPhase("gate")} />
-        )}
-      </AnimatePresence>
-
-      {phase === "gate" && <Gate onUnlock={() => setPhase("owl")} />}
-
-      <AnimatePresence mode="wait">
-        {phase === "owl" && (
-          <OwlDelivery
-            key="owl"
-            onDone={() => {
-              unlock();
-              setPhase("experience");
-            }}
-          />
-        )}
-      </AnimatePresence>
-
-      {phase === "experience" && <Experience />}
-    </>
+    <main
+      onClick={unmute}
+      style={{
+        position: "fixed",
+        inset: 0,
+        background: "#ffffff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        zIndex: 9999,
+      }}
+    >
+      <video
+        ref={videoRef}
+        src="/wegh-tuzak.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="auto"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "contain",
+          background: "#ffffff",
+        }}
+      />
+    </main>
   );
 }
