@@ -19,7 +19,10 @@ export async function GET(req: Request) {
   const headers = new Headers();
   headers.set("Content-Type", "video/mp4");
   headers.set("Accept-Ranges", "bytes");
-  headers.set("Cache-Control", "public, max-age=31536000, immutable");
+  // Range yanıtlarının yanlışlıkla önbelleğe alınıp herkese aynı parçanın
+  // sunulmasını engelle (aksi halde video ilk parçada kesilir).
+  headers.set("Cache-Control", "no-store");
+  headers.set("Vary", "Range");
 
   const contentRange = upstream.headers.get("content-range");
   if (contentRange) headers.set("Content-Range", contentRange);
