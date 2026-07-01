@@ -83,7 +83,7 @@ export const config = {
 
   // 🔎 SEO / META
   meta: {
-    title: "Özür Dilerim",
+    title: "Hogwarts Özel Giriş Kapısı",
     description:
       "Hogwarts evreninde geçen sinematik bir yıldönümü deneyimi. Yalnızca seçilmiş cadılar için hazırlanmış büyülü bir aşk hikayesi.",
     keywords: ["Harry Potter", "Hogwarts", "yıldönümü", "aşk", "sinematik deneyim"],
